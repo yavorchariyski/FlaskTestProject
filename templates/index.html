@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Flask Test</title>
+{% endblock %}
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+<div class="content container">
+    <h1 style="text-align: center">Flask Task Manager</h1>
+    <table class="table table-striped">
+        <tr class="table-dark">
+            <th>ID</th>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td class="w-10">{{ task.id }}</td>
+            <td class="w-50">{{ task.content }}</td>
+            <td class="w-30">{{ task.date_created.strftime('%c') }}</td>
+            <td class="w-10">
+                <a  href="/update/{{task.id}}" class="btn btn-outline-success">Update</a>
+                <a  href="/delete/{{task.id}}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col-3">
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content" class="btn btn-outline-secondary" size="auto">
+        <input type="submit" value="Add Task" class="btn btn-outline-primary">
+    </form>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+{% endblock %}
